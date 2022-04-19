@@ -1,0 +1,130 @@
+<hthl>
+    <HEAD>
+    <TITLE>Wipe Effects</TITLE> 
+    <style type="text/css">
+    BODY {text-align: center}
+         #wipe {position:absolute; top:200pt; left:40%; clip:rect(0 100% 100% 0); border: 2pt navy solid; width: 100pt; background: white}
+    P {margin-top:0pt; margin-bottom:0pt} INPUT {width:100%}
+    input {width: 100%;}
+    </style>
+    <LINK REL="stylesheet" href="…/samples.css" TYPE="text/css"> 
+    <SCRIPT LANGUAGE="JavaScript" ID="WipeEffects">
+    function wipe(direction) {
+    var el = document.all.wipe;
+    var into = true;
+    if (arguments[l] != null)
+      into - arguments[1];
+    if (null == el.init) {
+     el. init - true; 
+     el.clipTop = 0; 
+     el. clipRight = 0; 
+     el. clipBottom = 0; 
+     el.clipLeft = 0; 
+     el. inc = 4; 
+    if (into) // Set up wipe-in.
+    switch (direction) {
+    case "clipBottom": 
+    el.clipRight = "100%";
+    el. size = el.offsetHeight; 
+    break;
+
+    case "clipRight":
+    el.clipBottom = "100%";
+    el. size = el. offsetWidth; 
+    break;
+
+    case "clipTop":
+    el.clipBottom = "100%"; 
+    el.clipRight = "100%"; 
+    el.clipTop = el.offsetHeight; 
+    el.inc *= -1; 
+    el.size = 0; 
+    break;
+
+    case "clipLeft":
+    el.clipBottom = "100%"; 
+    el.clipRight = "100%"; 
+    el.clipleft = el.offsetWidth; 
+    el.inc *= -1; 
+    el.size = 0; 
+    break;
+    }
+    else // Set up wipe-out.
+    switch (direction) {
+     case "clipBottom":
+      el. clipRight = "100%"; 
+      el.clipBottom = el.offsetHeight; 
+      el.size = 0; 
+      Sel.ino *= -1;
+      break;
+    case "clipRight":
+     el. clipBottom = "100%"; 
+     el.clipRight = el.offsetWidth; 
+     el.size = 0; el.ine *= -1; 
+     break;
+    case "clipTop":
+     el.clipBottom - "100%"; 
+     el. clipRight - "100%"; 
+     el. clipileight - el. offsetHeight; 
+     el.size - el.offsetHeight; 
+     break; 
+    case "clipLeft":
+     el.clipBottom = "100%"; 
+     el. clipRight = "100%"; 
+     el. clipleft = 0; 
+     el. size = el.offsetWidth; 
+     break;
+    }
+
+ }
+
+
+ el[direction] += el.inc; 
+ el.style.clip = "rect(" + el. clipTop + " "+
+   el.clipRight + " " + el.clipBottom + " " +
+   el. clipleft + ") ";
+if (((el.size >= el[direction]) && (el.inc > 0)) ||
+     ((el[direction] >= 0) && (el.inc < 0))) 
+setTimeout ("wipe('" + direction + "'," + into + ")",
+10);
+
+else
+  el.init = null;
+}
+</SCRIPT>
+
+</HEAD>
+
+<body>
+    <h1>Wipe Effects</h1> 
+    <p Style="padding-bottom: 5pt">
+     <input TYPE=BUTTON STYLE="width:260pt" VALUE="Display"
+       ONCLICK=
+      "document. all.wipe. style.clip='rect(0 100% 100% 0)'">
+<fieldset STYLE="width: 130pt">
+     <legend>Wipe-In Effects</legend> 
+     <p><input TYPE=BUTTON VALUE="Wipe to Bottom"
+       ONCLICK="wipe('clipBottom')">
+     <p><input type=button value="Wipe to Right"
+       ONCLICK="wipe('clipRight') ">
+     <p><input TYPE=button VALUE="Wipe to Top"
+       ONCLICK="wipe('clipTop')">
+     <p><input TYPE=bUtTON vAlUe="Wipe to Left"
+       ONCLICK="wipe ('clipLeft')">
+</fieldset> 
+<fieldset style="width:130pt">
+<legend>Wipe-Out Effects</legend> 
+     <p><input TYPE=button value="Wipe from Bottom"
+       ONCLICK="wipe('clipBottom', false)">
+    <p><input TYPE=bUTToN VALUE="Wipe from Right"
+       ONCLICK="wipe('clipRight', false)">
+    <p><input TYPE=BUTTON VALUE="Wipe from Top"
+       ONCLICK="wipe('clipTop', false)">
+    <p><input TYPE=butTON VALUE="Wipe from Left"
+     ONCLICK="wipe('clipLeft', false)">
+</fieldset> 
+<div ID=wipe>
+     <p>Home<p>News<p>Info<p>About<p>Demo
+</div>
+</body>
+</html>

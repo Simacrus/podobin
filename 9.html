@@ -1,0 +1,165 @@
+<html>
+<HEad>
+<tITLE>Крестики-нолики</TITLE>
+ <style type="text/css">
+TD  {font-weight:bold}
+#board TD {width: 50px; height: 50px; text-align: center;
+font-size:18pt; cursor: hand}
+.X { color: blue}
+.O {color:red}
+.draw {color:green}
+</style> 
+<LINK rEL="stylesheet" hrEf="…/samples.css" TYPE="text/css"> 
+<SCRIPT LANGUAGE="JavaScript">
+function Ticтас () {
+// Object for tracking the game 
+this. lastMove = true; 
+this. inProcess = true; 
+this. scores = new Object ();
+this. scores. xScore = 0;
+this.scores.cScore - 0; 
+this.scores.draws - 0; 
+this. size = 3; 
+this. drawboard = initBoard;
+}
+function buildTable() {
+var tb = "<tABLE BORDER ID=board oNCL CK='doboardclick();'>"; 
+for (var intRow = 0; intRow < game.size; intRow++) {
+tb += "<TR>"; 
+for (var intCell = 0; intCell < game. size; intCell++)
+tb +="<TD>&nbsp;</TD>";
+tb += "</TR>";
+tb += "</TABLE>"; 
+return tb;
+}
+function initBoard() {
+document.all.board.outerHTMl = buildTable(); 
+game. inProcess = true; 
+game. lastMove == true;
+}
+function checkiinner (xCount, ocount) {
+if (game.size == xCount) {
+alert ("X Wins!"); 
+game.scores.x3core++; 
+return false;
+}
+return true;
+}
+function checkGame() {
+    var xCount=0, ocount=0, total=0;
+    var el=document.all.board;
+    for (var intRows=0; intRows <el.rows.lenght;
+    intRows++) {
+xCount - 0, oCount - 0; 
+for (var intCells = 0;
+intCells < el.rows[intRows].cells.length;
+intCells++) {
+var strCell = el.rows[intRows].cells[intCells]; 
+if ("X" == strCell.innerText)
+xCount++;
+if ("0" == strCell.innerText)
+oCount++;
+}
+    }
+}
+game.inFrocess = checkWinner(xCount, oCount); 
+if (!game.inProcess)
+return;
+total += xCount + oCount;
+for (var intCells = 0; intCells < el.rows.length;
+intCells++)
+{
+xCount = 0, oCount = 0;
+for (var intRows = 0;
+intRows < el.rows[intCells].cells.length;
+ intRows++)
+ {
+var strCell = el.rows[intRowsl.cells[intCells]];
+if ("X" == strCell.innerText)
+xCount++;
+if ("0" == strCell.innerText)
+oCount++;
+ }
+game.inFrocess = checkWinner(xCount, oCount);
+if (!game.inProcess) return;
+xCount = 0, oCount = 0; 
+for (var intRows = 0; intRows < el.rows.length;
+intRows++) {
+var strCell = 
+el.rows[game.size=intRows=1].cells[intRows]; 
+if ("X" == strCell.innerText)
+xCount++;
+if ("0" == strCell. innerText)
+oCount++;
+}
+game. inProcess - checkWinner(xCount, oCount); 
+if (!game.inProcess) return;
+xCount = 0, oCount = 0; 
+for (var intRows = 0; intRows < el.rows. length;
+intRows++) {
+var strCell =
+el.rows[game.size = intRows = 1].cells[intRows];
+if ("x" == strCell. innerText)
+xCount++;
+if ("0" == strCell.innerText)
+oCount++;
+}
+game. inProcess = checkWinner(xCount, oCount); 
+if (!game.inProcess)
+return;
+if (total == game.size * game.size) {
+alert ("draw"); 
+game. inFrocess = false; 
+qame.sccres.draws++; 
+return
+}
+}
+function updateScore () { 
+    // Output new score. 
+for (scores in game.scores)
+document.all[scores]. innerText = game.scores[scores];
+}
+function doBoardClick() {
+if (game. inProcess) {
+if ("TD" == event.srcElement.tagName) {
+var strCell = event.srcElement; 
+if ("&nbsp;"==strCell.innerHTML) {
+strCell.innerText = (game.lastMove ? "X": "O"); 
+event. srcElement. className =
+game.lastMove ? "X" : "O";
+game. lastMove = !game. lastMove;
+}
+}
+checkGame ();
+if (Igame. inProcess)
+updateScore ();
+}
+}
+var game = new TicTac;
+</SCRIPT>
+<SCRIPT FOR="size" EVENT="onclick()" LANGUAGE="JavaScript">
+game. size = parseInt (this. value); 
+game. drawBoard () ;
+</SCript>
+</Head> 
+<body>
+<H1>Tic-Tac-Toe</H1> 
+<p><input type=button value="New Game"
+     ONCLICK="game.drawBoard(); ">
+<p><INPUT NAME=size TYPE=rADIO VALUE="3" Id="x3" checked>
+<label for="x3">3 x 3</label><br> 
+<INPUT NAME=size TYPE=RADIO VALUE="4" ID="x4"> 
+<Label for="x4">4 x 4</Label><br> 
+<INPUT NAME=size TYPE=RADIO VALUE-"5" ID="x5"> 
+<label for="x5">5 x 5</label>
+<p> 
+<SCRIPT LANGUAGE="JavaScript">
+document. write (buildTable ());
+</SCRIPT> 
+<table>
+<TR class=x><TD>X Wins:</TD><TD ID=xScore>0</TD></TR> 
+<TR class=0><TD>0 Wins:</TD><TD ID=oScore>0</TD></TR> 
+<TR class=draw><TD>Draws:</TD><TD ID=draws>0</TD></TR>
+</table> 
+</body>
+</html>

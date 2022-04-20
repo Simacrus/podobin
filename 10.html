@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Multiple-Select Check boxes</title> 
+<link rel="stylesheet" href="../samples.css" type="text/css"> 
+<script language="Javascript"> 
+function getSelected (opt) {
+var selected = new Array(); 
+var index = 0; 
+for (var intLoop = 0; intLoop < opt.length; intLoop++) {
+if ((opt[intLoop].selected) ||
+(opt[intLoop].checked)) {
+index = selected.length; 
+selected[index] = new Object; 
+selected[index].value = opt[intLoop].value; 
+selected[index].index = intLoop;
+}
+}
+return selected;
+}
+function outputSelected(opt) { 
+var sel = getSelected(opt); 
+var strSel = "";
+for (var item in sel)
+strSel += sel[item].value + "\n"; 
+alert("Selected Items:\n" + strSel);
+}
+</script>
+</head> <body>
+<h1>Multiple Select List Boxes</H1>
+<form name="ColorSelector">
+<input type=checkbox name="color" value="Red">Red 
+<input type=checkbox name="color" value="Navy" checked>Navy 
+<input type=checkbox name="color" value="Black">Black 
+<input type=checkbox name="color" value="White" checked>White 
+<input type=button value="selected check box items" onclick="outputSelected(this.form.color);"> 
+<p>
+<select name="multistore" size=3 multiple>
+<option value="Computer" selected>Computer</option> 
+<option value="Bookstore">Book Store</option> 
+<option value="MailOrder" selected>Mail Order</option>
+</select> 
+<input type=button value="Selected List Items"
+onclick="outputSelected(this.form.multistore.options)">
+</FORM>
+</body>
+</html>

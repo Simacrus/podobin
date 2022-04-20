@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <title>Прыгающий мяч</title>
+    <script language="JavaScript">
+      var prir = 10;
+      var verh = 500;
+      var prir1 = 20;
+      var verh1 = 500;
+      var prir2 = 20;
+      var verh2 = 500;
+      var prir3 = 20;
+      var verh3 = 500;
+
+      function vverh() {
+        tm = window.setTimeout ("otnat()", 10);
+      }
+
+
+      function vniz() {
+        tml = window.setTimeout ("dobav()", 10);
+      }
+
+
+      function dobav() {
+        verh = verh + prir;
+        document.ball1.style.top = verh + "px";
+        if ((verh >= 300) && (verh < 500)) {
+          clearTimeout(tml);
+          vniz();
+        }
+      }
+
+
+      function otnat() {
+        verh = verh - prir;
+        document.ball1.style.top = verh + "px";
+        if ((verh >= 300) && (verh < 500)) {
+          clearTimeout(tm);
+          vverh();
+        } else {
+          vniz();
+        }
+      }
+
+
+      function vverh1() {
+        tmm = window.setTimeout ("otnat1()", 10);
+      }
+
+
+      function otnat1() {
+        prir1--;
+        verh1 = verh1 - prir1;
+        document.ball2.style.top = verh1 + "px";
+        if (verh1 < 500) {
+          clearTimeout(tmm);
+          vverh1();
+        } else {
+          prir1 = 20;
+          verh1 = 500;
+          document.ball2.style.top = verh1 + "px";
+        }
+      }
+
+      function vverh2() {
+      tmmm = window.setTimeout ("otnat2()", 10);
+      }
+
+
+      function otnat2() {
+        prir2--;
+        verh2 = verh2 - prir2;
+        document.ball3.style.top = verh2 + "px";
+        if (verh2 < 500) {
+          clearTimeout(tmmm);
+          vverh2();
+        } else {
+          prir2 = 20;
+          verh2 = 500;
+          vverh2();
+        }
+      }
+
+
+      function vverh3 () {
+        tmmmm = window.setTimeout ("otnat3()", 10);
+      }
+
+
+      function otnat3() {
+        prir3--;
+        verh3 = verh3 - prir3;
+        document.ball4.style.top = verh3 + "px";
+        if (verh3 < 500) {
+          clearTimeout(tmmmm);
+          vverh3();
+        } else {
+          ugas();
+        }
+      }
+
+
+      function ugas () {
+        if (prir3 !=0) {
+          prir3 = prir3 + 10;
+          verh3 = verh3 - 5;
+        vverh3();
+        } else {
+          prir3 = 20;
+          verh3 = 500;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <img name ="ball1" src=img/ball.gif style="position:absolute; width:100px; height:100px; left:100px; top:500px" onclick="vverh()">
+    <img name ="ball2" src=img/ball.gif style="position:absolute; width:100px; height:100px; left:300px; top:500px" onclick="vverh1()">
+    <img name ="ball3" src=img/ball.gif style="position:absolute; width:100px; height:100px; left:500px; top:500px" onclick="vverh2()">
+    <img name ="ball4" src=img/ball.gif style="position:absolute; width:100px; height:100px; left:700px; top:500px" onclick="vverh3()">
+  </body>
+</html>

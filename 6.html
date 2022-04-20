@@ -1,0 +1,52 @@
+<HTML>
+    <HEAD>
+    <title>html-селектор цветовых решений</title>
+    <link rel="stylesheet" href="…/samples.css" type="text/ass">
+    <style>
+        table{ background: white;}
+        td {width: 30pt;height:30pt;cursor: default;}
+        </style>
+    </head>
+    <body>
+    <H1>Color Selector</H1>
+    <DIV ONCLICK="colorSelector()">
+    <SCRIPT LANGUAGE="JavaScript">
+    function colorSelector(){
+    if ("TD" == event.srcElement.tagName)
+    if (document.all. Text.contains (event. srcElement))
+    document.fgColor = event. srcElement.bgColor;
+    else if (document. all. Background. contains(
+    event.srcElement))
+    document. bgColor = event. srcElement. bgColor;
+    }
+    </SCRIPT> <table ID="Background" BORDER>
+    <CAPTION>Background Color</CAPTION>
+    <tr>
+    <TD BGCOLOR=Black></TD>
+    <TD BGCOLOR=Red></TD>
+    <TD BGCOLOR=Green></TD>
+    <TD BGCOLOR=LightBlue></TD>
+    <TD BGCOLOR=Yellow></TD>
+    </tr>
+    <tr>
+    <TD BGCOLOR=YellowGreen></TD><TD BGCOLOR=Orange></TD> <TD BGCOLOR=Navy></TD><TD BGCOLOR=Magenta></TD> <tD bgcolOR=Brown></tD>
+    </tr>
+    <tr>
+    <TD BGCOLOR=Black></TD>
+    <TD BGCOLOR=Blue></TD>
+    <TD BGCOLOR=Burlywood></TD>
+    <TD BGCOLOR=Gold></TD>
+    <TD BGCOLOR=Cyan></TD>
+    </tr>
+    </table>
+    <TABLE ID="Text" BORDER>
+    <CAPTION>Text Color</CAPTION> <tr>
+    <TD BGCOLOR=Black></TD><TD BGCOLOR=Red></TD> <TD BGCOLOR=Green></TD><TD BGCOLOR=LightBlue></TD> <TD BGCOLOR=Brown></TD>
+    </tR> <tr>
+    <tD BGCOLOR=White></td><tD BGCOLOR=Blue></TD> <TD BGCOLOR=Burlywood></TD><TD BGCOLOR=Gold></TD>
+    <TD BGCOLOR=Cyan></TD>
+    </tr>
+    </table>
+    </DIV>
+    </body>
+    </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Модальные дилоговые окна</title>
+    <script>
+        function multi(){
+            var strRet = ""
+            var ret = showModalDialog("user.htm")
+            for (var r in ret)
+             strRet += r+ ": " + ret[r] + "\n"
+             alert("The following values were returned: \n + strRet ")
+        }
+    </script>
+    <style>
+        input{width:250pt}
+    </style>
+</head>
+<body>
+    <H1>Modal Dialog</H1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio voluptates assumenda ab dolores nemo quaerat quibusdam aliquam quasi pariatur rerum.</p>
+    <table>
+      <tr><th>exemple</th><th>Decription</th></tr> 
+      <tr>
+          <td>
+              <input type="button" value="alert('Hello world')" onclick="eval(this.value)">
+          </td>
+          <td>
+              displays a standard message 
+          </td>
+      </tr> 
+      <tr>
+          <td>
+              <input type="button" value = "prompt('Enter your user name:','Scott')" onclick="alert('the value\n'+ eval(this.value) + '\nwas returned.')">
+          </td>
+          <td>
+              Requester information from the user.
+          </td>
+      </tr>
+      <tr>
+          <td>
+            <input type="button" value="confirm('Do you want to continue?')" onclick="alert('the value\n' + eval(this.value)+ '\nwas returned.')">  
+          </td>
+          <td>
+             displays a dialog box with two choices: ok and CANCEL.
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <input type="button" value = "showModalDialog('about.htm')" onclick="eval (this.value)">
+          </td>
+          <td>
+              displays a custom alert box using the specified HTML file.
+          </td>
+      </tr>
+    </table>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio nam quia saepe quae voluptatibus dolore repudiandae dolorum quidem, dolor ullam?</p>
+    <p>Lorem ipsum dolor sit amet.</p>
+    <input type="text" value = " Enter a value" id="args">
+    <input type="button" value=" showModalDialog('pass.htm', document.all.args.value, ' dialogWidth=200pt; dialogHeight= 200pt')" onclick="alert('The value\n' + eval(this.value) + '\nwas returned.')">
+    <p>Multi-input</p>
+    <input type="button" value = "showModalDialog('user.htm')" onclick="multi()">
+    
+</body>
+</html>

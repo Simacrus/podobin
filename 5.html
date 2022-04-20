@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Менеджер окон</title>
+  <script language = "JavaScript">
+    var windows = new Array();
+    function newWindow(url, wname) {
+      var features = "";
+      if (null != arguments[2]) {
+        features = arguments[2];
+      }
+      return window.open(url, wname, features);
+    }
+
+    function createWindow(url, wname) {
+      var features = arguments[2] == null ? "" : arguments[2];
+      windows[wname] = new newWindow(url, wname, features);
+    }
+
+    function closeWindows() {
+      for (w in windows) {
+        if (!windows[w].closed) {
+          windows[w].close();
+        }
+      }
+    }
+
+    function listWindows() {
+      var swin = "Window List \n";
+      for (w in windows) {
+        swin += w + ":" +
+        ((windows[w].closed) ? "Closed" : "Open") + "\n";
+      }
+      alert(swin);
+    }
+
+    function openSampleWindows() {
+      createWindow("closeme.htm", "ChildWindow1");
+      createWindow("closeme.htm", "ChildWindow2");
+    }
+  </script>
+</head>
+<body onunload="closeWindows()">
+  <h1>Window Manager</h1>
+  <form>
+    <input type="button" onclick="openSampleWindows()" value="Add Windows">
+    <input type="button" onclick="listWindows()" value="List Windows">
+    <input type="button" onclick="closeWindows()" value="Close Windows">
+  </form>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Bouncing ball</title>
+        <script>
+            var x = 0; 
+            var y = 0;
+            var offsetx = 4;
+            var offsety = 4;
+            function bounceIt(){
+                var el = document.all.bounce;
+                x+= offsetx;
+                y+= offsety;
+                if ((x+ el.offsetWidth >= document.body.clientWidth + document.body.scrollLeft) || (x <= document.body.scrollLeft)){
+                    offsetx = -offsetx
+                    if(x <= document.body.scrollLeft)
+                     x = document.body.scrollLeft;
+                    else 
+                    x = document.body.clientWidth - el.offsetWidth + document.body.scrollLeft 
+                }
+                if ((y+el.offsetWidth >= document.body.clientHeight + document.body.scrollTop) || 
+                (y <= document.body.scrollTop)){
+                    offsety = -offsety;
+                    if (y <= document.body.scrollTop)
+                    y= document.body.scrollTop;
+                    else 
+                     y = document.body.clientHeight - el.OffsetHeight + 
+                     document.body.scrollTop;
+
+                }
+                el.style.posLeft = x;
+                el.style.posTop = y;
+            }
+        </script>
+    </head>
+    <body onload="window.tm = setInterval('bounceIt()', 10)" onunload="clearInterval(window.tm);">
+        <img src="мячик.jpg" id="bounce" style="position:absolute; top:0;left:0; z-index:-1; width: 200px; height:200px ;">
+        <h1>Boucing ball</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas ipsam deleniti modi suscipit quidem voluptatibus facilis ullam nobis, minus voluptatem alias reiciendis eum sed! Sit illum dicta sunt quia asperiores.</p>
+        <p>Lorem ipsum dolor sit amet consectetur.</p>
+
+
+        
+    </body>
+</html>

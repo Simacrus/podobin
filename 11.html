@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+<TITLE>Formatting User Input</TITLE>
+<link rel="stylesheet" href="…/samples.css" type="text/css">
+<style type="text/css">
+.positive {color:green}
+.negative {color:red}
+.badValue {background: red; color: white}
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+function formatNumber() {
+with (event.srcElement)
+className =
+parseInt(value) >= 0 ? "positive" : "negative";
+}
+function validateNumber() {
+var el = event.srcElement;
+var num = "0123456789"; // Valid numbers
+event.returnValue = true;
+event.returnValue = ("-" == el.value.charAt(0)) ||
+(-1 != num.indexOf(el.value.charAt(0)));
+for (var intLoop = 1; intLoop < el.value.length;
+intLoop++)
+if (-1 == num.indexOf(el.value.charAt(intLoop)))
+event.returnValue = false;
+if (!event.returnValue)// Bad value
+el.className = "badValue"; // Change class
+else
+el.className = "";
+}
+function checkFormat() {
+event.returnValue = true;
+if (null != event.srcElement.validate)
+if ("number" == event.srcElement.validate)
+validateNumber(); // Sets event.returnValue
+if ((null != event.srcElement.getAttribute("format")) &&
+(event.returnValue))
+if ("number" ==
+event.srcElement.getAttribute("format"))
+formatNumber();
+}
+</SCRIPT>
+</head>
+<body>
+<h1>Formatting Input</h1>
+<p>Enter a positive or negative number below:</p>
+<input type ="text"
+ONCHANGE="checkFormat ()";
+format = "number";
+validate= "number" >
+</body>
+</html>

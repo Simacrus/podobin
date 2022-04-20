@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Цифровые часы</title>
+</head>
+<body>
+  <style>
+    #clock {
+      color: blue;
+      font-size: 120%;
+    }
+  </style>
+  <script language="JavaScript">
+    var MS = navigator.appVersion.indexOf('MSIE');
+    window.isIE4 = (MS > 0) && (parseInt(navigator.appVersion.substring(MS + 5, MS + 6)) >= 4);
+
+    function lead0(val) {
+      return (val < 10) ? "0" + val.toString() : val;
+    }
+
+    function buildTime() {
+      var time = new Date();
+      var ampm = 'AM';
+      var h = time.getHours();
+      if (h > 12) {
+        h -= 12;
+        ampm = 'PM';
+      }
+
+      return lead0(h) + ':' + lead0(time.getMinutes()) + ':' + lead0(time.getSeconds()) + ampm;
+    }
+    
+    function tick() {
+      document.all.clock.innerText = buildTime();
+    }
+    setInterval(tick, 1000); 
+  </script>
+</body onload = 'if (null != window.tmr) clearInterval(window.tmr);'
+       onload = 'if (window.isIE4)window.tmr = setInterval(buildTime(), 999);'>
+       <h1>Ticking Clock</h1>
+       <p>Below is a live, ticking clock programmed entirely in HTML.</p>
+       <p>The current time is:</p>
+       <span id="clock">
+         <script language = 'JavaScript'>
+          document.write(buildTime());
+         </script>
+       </span>
+</html>

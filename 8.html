@@ -1,46 +1,141 @@
-<html>
-<head>
-<title>Multiple-Select Check boxes</title>
-<link rel="stylesheet" href="../samples.css" type="text/css">
-<script language="Javascript">
-function getSelected (opt) {
-var selected = new Array();
-var index = 0;
-for (var intLoop = 0; intLoop < opt.length; intLoop++) {
-if ((opt[intLoop].selected) ||
-(opt[intLoop].checked)) {
-index = selected.length;
-selected[index] = new Object;
-selected[index].value = opt[intLoop].value;
-selected[index].index = intLoop;
-}
-}
-return selected;
-}
-function outputSelected(opt) {
-var sel = getSelected(opt);
-var strSel = "";
-for (var item in sel)
-strSel += sel[item].value + "\n";
-alert("Selected Items:\n" + strSel);
-}
-</script>
-</head> <body>
-<h1>Multiple Select List Boxes</H1>
-<form name="ColorSelector">
-<input type=checkbox name="color" value="Red">Red
-<input type=checkbox name="color" value="Navy" checked>Navy
-<input type=checkbox name="color" value="Black">Black
-<input type=checkbox name="color" value="White" checked>White
-<input type=button value="selected check box items" onclick="outputSelected(this.form.color);">
-<p>
-<select name="multistore" size=3 multiple>
-<option value="Computer" selected>Computer</option>
-<option value="Bookstore">Book Store</option>
-<option value="MailOrder" selected>Mail Order</option>
-</select>
-<input type=button value="Selected List Items"
-onclick="outputSelected(this.form.multistore.options)">
-</FORM>
-</body>
-</html>
+<HTML>
+    <HEAD>
+       <TITLE> Эффекты возникновения/удаления </TITLE>
+       <STYLE TYPE="text/css">
+          BODY {text-align:center}
+  
+          #wipe {position:absolute; top:200pt; left:40%;
+             clip:rect(0 100% 100% 0); border:2pt navy solid;
+             width:100pt; background:white}
+          P {margin-top:0pt; margin-bottom:0pt}
+          INPUT {width:100%}
+       </STYLE>
+       <SCRIPT LANGUAGE="JavaScript" ID="WipeEffects">
+          function wipe(direction) {
+             var el = document.all.wipe;
+             /* Второй аргумент необязателен и определяет 
+                появление или исчезновение элемента. По 
+                умолчанию воспроизводится эффект появления. */
+             var into = true;
+             if (arguments[1] != null)
+                into = arguments[1];
+  
+             if (null == el.init) {
+                // Инициализация эффекта.
+                // Вся информация появления/исчезновения хранится 
+                // в этом элементе.
+                el.init = true;
+                el.clipTop = 0;
+                el.clipRight = 0; 
+                el.clipBottom = 0; 
+                el.clipLeft = 0
+                el.inc = 4;
+  
+                if (into)  // Установка эффекта появления.
+                   switch (direction) {
+                   case "clipBottom":
+                      el.clipRight = "100%";
+                      el.size = el.offsetHeight
+                      break;
+                   case "clipRight":
+                      el.clipBottom = "100%";
+                      el.size = el.offsetWidth;
+                      break;
+                   case "clipTop":
+                      el.clipBottom = "100%";
+                      el.clipRight = "100%";
+                      el.clipTop = el.offsetHeight;
+                      el.inc *= -1;
+                      el.size = 0;
+                      break;
+                   case "clipLeft":
+                      el.clipBottom = "100%";
+                      el.clipRight = "100%";
+                      el.clipLeft = el.offsetWidth;
+                      el.inc *= -1;
+                      el.size = 0;
+                      break;
+                   }
+                else       // Установка эффекта исчезновения.
+                   switch (direction) {
+                   case "clipBottom":
+                      el.clipRight = "100%";
+                      el.clipBottom = el.offsetHeight;
+                      el.size = 0;
+                      el.inc *= -1;
+                      break;
+                   case "clipRight":
+                      el.clipBottom = "100%";
+                      el.clipRight = el.offsetWidth;
+                      el.size = 0;
+                      el.inc *= -1;
+                      break;
+                   case "clipTop":
+                      el.clipBottom = "100%";
+                      el.clipRight = "100%";
+                      el.clipHeight = el.offsetHeight;
+                      el.size = el.offsetHeight;
+                      break;
+                   case "clipLeft":
+                      el.clipBottom = "100%";
+                      el.clipRight = "100%";
+                      el.clipLeft = 0;
+                      el.size = el.offsetWidth;
+                      break;
+                   }
+             }
+             // Увеличение выреза.
+             el[direction] += el.inc;
+             // Set clip.
+             el.style.clip = "rect(" + el.clipTop + " " +
+                el.clipRight + " " + el.clipBottom + " " +
+                el.clipLeft + ")";
+             // Проверка завершения.
+             if (((el.size >= el[direction]) && (el.inc > 0)) ||
+                   ((el[direction] >= 0) && (el.inc < 0))) 
+                setTimeout("wipe('" + direction + "', " + into + ")", 
+                   10);
+             else 
+                el.init = null;
+          }
+       </SCRIPT>
+    </HEAD>
+  
+    <BODY>
+       <H1>Wipe Effects</H1>
+       <P STYLE="padding-bottom:5pt">
+          <INPUT TYPE=BUTTON STYLE="width:260pt" VALUE="Display"
+             ONCLICK=
+                "document.all.wipe.style.clip='rect(0 100% 100% 0)'">
+       <FIELDSET STYLE="width:130pt">
+          <LEGEND>Wipe-In Effects</LEGEND>
+          <P><INPUT TYPE=BUTTON VALUE="Wipe to Bottom"
+             ONCLICK="wipe('clipBottom')">
+          <P><INPUT TYPE=BUTTON VALUE="Wipe to Right"
+             ONCLICK="wipe('clipRight')">
+          <P><INPUT TYPE=BUTTON VALUE="Wipe to Top"
+             ONCLICK="wipe('clipTop')">
+          <P><INPUT TYPE=BUTTON VALUE="Wipe to Left"
+             ONCLICK="wipe('clipLeft')">
+       </FIELDSET>
+  
+       <FIELDSET STYLE="width:130pt">
+          <LEGEND>Wipe-Out Effects</LEGEND>
+          <P><INPUT TYPE=BUTTON VALUE="Wipe from Bottom"
+             ONCLICK="wipe('clipBottom', false)">
+          <P><INPUT TYPE=BUTTON VALUE="Wipe from Right"
+             ONCLICK="wipe('clipRight', false)">
+          <P><INPUT TYPE=BUTTON VALUE="Wipe from Top"
+             ONCLICK="wipe('clipTop', false)">
+          <P><INPUT TYPE=BUTTON VALUE="Wipe from Left"
+             ONCLICK="wipe('clipLeft', false)">
+       </FIELDSET>
+       <DIV ID=wipe>
+          <P>Home
+          <P>News
+          <P>Info
+          <P>About
+          <P>Demo
+       </DIV>
+    </BODY>
+ </HTML>
